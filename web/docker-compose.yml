@@ -1,0 +1,23 @@
+version: '3'
+services:
+  caddy:
+    build:
+      context: github.com/abiosoft/caddy-docker.git
+      args:
+        plugins: datadog,cache,login,upload,webdav
+    container_name: web_caddy
+    volumes:
+      - /puppy/docker/caddy/Caddyfile:/etc/Caddyfile
+      - /puppy/docker/caddy/root:/root/.caddy
+      - /puppy/docker/caddy/puphaus_park:/www/puphaus_park
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
