@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mongo1:
+    image: mongo:4-xenial
+    container_name: mongo1
+    volumes:
+      - /puppy/docker/mongo1/db:/data/db:rw
+    ports:
+      - 27017:27017/tcp
+    env_file:
+     - /etc/default/ph/mongo
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
