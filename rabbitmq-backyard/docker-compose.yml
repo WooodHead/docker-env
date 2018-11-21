@@ -9,6 +9,10 @@ services:
       - /opt/docker/rabbitmq/var:/var/lib/rabbitmq
     env_file:
       - /etc/default/ph/rabbitmq
+    environment:
+      - RABBITMQ_MANAGEMENT_SSL_CACERTFILE=/etc/ssl/phca/phca.crt
+      - RABBITMQ_MANAGEMENT_SSL_CERTFILE=/etc/ssl/phca/dx_pup_haus_2048_chain.crt
+      - RABBITMQ_MANAGEMENT_SSL_KEYFILE=/etc/ssl/phca/dx_pup_haus_2048.key
     hostname: rmq-backyard
     ports:
       - 1883:1883/tcp
