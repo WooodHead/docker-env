@@ -1,0 +1,26 @@
+version: '3'
+services:
+  rabbitmq:
+    build:
+      context: ./
+    container_name: rabbitmq
+    volumes:
+      - /etc/ssl/phca:/etc/ssl/phca
+      - /opt/docker/rabbitmq/var:/var/lib/rabbitmq
+    env_file:
+      - /etc/default/ph/rabbitmq
+    hostname: rmq-backyard
+    ports:
+      - 1883:1883/tcp
+      - 5671:5671/tcp
+      - 5672:5672/tcp
+      - 8883:8883/tcp
+      - 15671:15671/tcp
+      - 15672:15672/tcp
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
