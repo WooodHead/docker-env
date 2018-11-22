@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres1:
+    image: postgres:11-alpine
+    container_name: postgres1
+    volumes:
+      - /opt/docker/postgres1/data:/var/lib/postgresql/data:rw
+    ports:
+      - 5432:5432/tcp
+    env_file:
+     - /etc/default/ph/postgres
+    restart: always
+    networks:
+      - haus
+  pganalyze:
+    image: quay.io/pganalyze/collector:stable
+    container_name: pganalyze
+    env_file:
+      - /etc/default/ph/pganalyze
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
