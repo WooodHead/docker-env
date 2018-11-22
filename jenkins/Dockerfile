@@ -14,6 +14,9 @@ RUN curl -o /tmp/go1.11.2.linux-amd64.tar.gz https://dl.google.com/go/go1.11.2.l
     tar -C /usr/local -xzf /tmp/go1.11.2.linux-amd64.tar.gz && \
     rm -Rf /tmp/go1.11.2.linux-amd64.tar.gz
 
+RUN go get -u github.com/gobuffalo/packr/packr && \
+    cp /root/go/bin/packr /usr/local/bin/
+
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
