@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+  jenkins:
+    build:
+      context: ./
+    container_name: jenkins
+    volumes:
+      - /opt/docker/jenkins/home:/var/jenkins_home:rw
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    ports:
+      - 18080:8080/tcp
+      - 50000:50000/tcp
+    restart: always
+    privileged: true
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
