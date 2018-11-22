@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ph-webhook:
+    image: ph-webhook:latest
+    container_name: ph-webhook
+    ports:
+      - 60080:8080/tcp
+    env_file:
+     - /etc/default/ph/puphaus
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
