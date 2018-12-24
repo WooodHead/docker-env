@@ -4,9 +4,12 @@ services:
     image: linuxserver/unifi:latest
     container_name: unifi
     volumes:
-      - /puppy/docker/unifi/config:/config:rw
+      - /opt/docker/unifi/config:/config:rw
     ports:
       - 3478:3478/udp
+      - 8080:8080/tcp
+      - 8081:8081/tcp
+      - 8443:8443/tcp
       - 8843:8843/tcp
       - 8880:8880/tcp
     restart: always

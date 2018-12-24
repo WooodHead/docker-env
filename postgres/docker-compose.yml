@@ -1,7 +1,8 @@
 version: '3'
 services:
   postgres1:
-    image: postgres:11-alpine
+    build:
+      context: ./
     container_name: postgres1
     volumes:
       - /opt/docker/postgres1/data:/var/lib/postgresql/data:rw
