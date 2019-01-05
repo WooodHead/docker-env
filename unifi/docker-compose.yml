@@ -1,8 +1,9 @@
-version: '3'
+version: '2'
 services:
   unifi:
     image: linuxserver/unifi:latest
     container_name: unifi
+    mem_limit: 4g
     volumes:
       - /opt/docker/unifi/config:/config:rw
     ports:

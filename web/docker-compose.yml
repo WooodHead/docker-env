@@ -1,11 +1,11 @@
 version: '3'
 services:
-  caddy:
+  caddy-web:
     build:
       context: github.com/abiosoft/caddy-docker.git
       args:
         plugins: datadog,cache,login,upload,webdav
-    container_name: caddy
+    container_name: caddy-web
     volumes:
       - /opt/docker/caddy/Caddyfile:/etc/Caddyfile
       - /opt/docker/caddy/root:/root/.caddy
