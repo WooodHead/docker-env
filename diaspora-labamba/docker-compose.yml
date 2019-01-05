@@ -1,0 +1,20 @@
+version: '3'
+services:
+  diaspora-labamba:
+    image: koehn/diaspora:latest
+    container_name: disapora-labamba
+    volumes:
+      - /opt/docker/diaspora-labamba/images:/home/diaspora/diaspora/public/uploads/images
+      - /opt/docker/diaspora-labamba/diaspora.yml:/home/diaspora/diaspora/config/diaspora.yml:ro
+      - /opt/docker/diaspora-labamba/database.yml:/home/diaspora/diaspora/config/database.yml:ro
+    ports:
+      - 3030:3000/tcp
+      - 5222:5222/tcp
+      - 5269:5269/tcp
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
