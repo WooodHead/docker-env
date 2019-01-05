@@ -1,0 +1,37 @@
+version: '3'
+services:
+  diaspora-postgres:
+    image: postgres:11
+    container_name: disapora-postgres
+    volumes:
+      - /opt/docker/diaspora-postgres/data:/var/lib/postgresql/data:rw
+    ports:
+      - 15432:5432/tcp
+    env_file:
+     - /etc/default/ph/postgres
+    restart: always
+    networks:
+      - haus
+  diaspora-redis:
+    image: redis:5-alpine
+    command: redis-server --appendonly yes
+    container_name: disapora-redis
+    volumes:
+      - /opt/docker/diaspora-redis/data:/data:rw
+    ports:
+      - 16379:6379/tcp
+    restart: always
+    networks:
+      - haus
+#  pganalyze:
+#    image: quay.io/pganalyze/collector:stable
+#    container_name: pganalyze
+#    env_file:
+#      - /etc/default/ph/pganalyze
+#    restart: always
+#    networks:
+#      - haus
+networks:
+  haus:
+    external:
+      name: haus
