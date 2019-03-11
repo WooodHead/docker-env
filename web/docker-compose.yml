@@ -4,12 +4,17 @@ services:
     build:
       context: github.com/abiosoft/caddy-docker.git
       args:
-        plugins: datadog,cache,login,upload,webdav
+        plugins: datadog,cache,ipfilter,login,upload,webdav
     container_name: caddy-web
+    environment:
+      - "ACME_AGREE=true"
     volumes:
       - /opt/docker/caddy/Caddyfile:/etc/Caddyfile
       - /opt/docker/caddy/root:/root/.caddy
       - /opt/docker/caddy/puphaus_park:/www/puphaus_park
+      - /opt/docker/caddy/no_index:/www/no_index
+      - /opt/docker/caddy/cache:/var/cache/caddy
+      - /opt/docker/caddy/logs:/var/log/caddy
     ports:
       - 80:80
       - 443:443

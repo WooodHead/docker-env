@@ -1,0 +1,29 @@
+version: '3'
+services:
+  bitbucket:
+    image: atlassian/bitbucket-server:latest
+    container_name: bitbucket
+    volumes:
+      - /opt/docker/bitbucket:/var/atlassian/application-data/bitbucket:rw
+    ports:
+      - 7999:7999/tcp
+    restart: always
+    networks:
+      - haus
+  bitbucket-postgres:
+    image: postgres:11
+    container_name: bitbucket-postgres
+    volumes:
+      - /opt/docker/bitbucket-postgres/data:/var/lib/postgresql/data:rw
+    ports:
+      - 35432:5432/tcp
+    env_file:
+     - /etc/default/ph/bitbucket
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus
+

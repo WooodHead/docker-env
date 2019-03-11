@@ -1,0 +1,18 @@
+version: '3'
+services:
+  opensim-mariadb:
+    image: mariadb:10
+    container_name: opensim-mariadb
+    env_file:
+      - /etc/default/ph/mariadb
+    volumes:
+      - /opt/docker/opensim-mariadb/data:/var/lib/mysql:rw
+    ports:
+      - 13306:3306/tcp
+    restart: always
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus

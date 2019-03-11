@@ -1,0 +1,31 @@
+version: '3'
+services:
+  diaspora-camo1:
+    image: inventid/camo:latest
+    container_name: diaspora-camo1
+    env_file:
+     - /etc/default/ph/camo
+    restart: always
+    networks:
+      - haus
+  diaspora-camo2:
+    image: inventid/camo:latest
+    container_name: diaspora-camo2
+    env_file:
+     - /etc/default/ph/camo
+    restart: always
+    networks:
+      - haus
+  diaspora-camo3:
+    image: inventid/camo:latest
+    container_name: diaspora-camo3
+    env_file:
+     - /etc/default/ph/camo
+    restart: always
+    networks:
+      - haus
+
+networks:
+  haus:
+    external:
+      name: haus

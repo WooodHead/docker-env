@@ -1,0 +1,26 @@
+version: '3'
+services:
+  opensim1:
+    build:
+      context: .
+    container_name: opensim1
+    volumes:
+      - /opt/docker/opensim1/localtime:/etc/localtime:ro
+      - /opt/docker/opensim1/Regions:/opt/opensim/bin/Regions:rw
+      - /opt/docker/opensim1/DataSnapshot:/opt/opensim/bin/DataSnapshot:rw
+      - /opt/docker/opensim1/OpenSim.ini:/opt/opensim/bin/OpenSim.ini:ro
+      - /opt/docker/opensim1/GridCommon.ini:/opt/opensim/bin/config-include/GridCommon.ini:ro
+      - /opt/docker/opensim1/FlotsamCache.ini:/opt/opensim/bin/config-include/FlotsamCache.ini:ro
+    ports:
+      - 9000:9000/tcp
+      - 9000:9000/udp
+      - 9001:9001/tcp
+      - 9001:9001/udp
+    restart: always
+    stdin_open: true
+    networks:
+      - haus
+networks:
+  haus:
+    external:
+      name: haus

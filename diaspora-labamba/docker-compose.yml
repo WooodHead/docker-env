@@ -2,7 +2,7 @@ version: '3'
 services:
   diaspora-labamba:
     image: koehn/diaspora:latest
-    container_name: disapora-labamba
+    container_name: diaspora-labamba
     volumes:
       - /opt/docker/diaspora-labamba/images:/home/diaspora/diaspora/public/uploads/images
       - /opt/docker/diaspora-labamba/diaspora.yml:/home/diaspora/diaspora/config/diaspora.yml:ro
